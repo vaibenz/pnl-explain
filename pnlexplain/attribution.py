@@ -96,7 +96,7 @@ def new_trade_pnl(trades, marks, d1):
     t["expiry"] = t["expiry"].fillna(pd.Timestamp("2100-01-01"))
     x = line_inputs(t, marks, d1)
     t["theo"] = unit_value(x)
-    fx = x["scale"] / (t["qty"] * t["multiplier"]).to_numpy(float)
+    fx = t["underlying"].map(marks.xs(d1, level="date")["usd_per_unit"]).to_numpy(float)
     t["pnl"] = (t["theo"] - t["price"]) * t["qty"] * t["multiplier"] * fx
     return t
 
