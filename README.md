@@ -39,6 +39,8 @@ python -m pnlexplain --first-order          # explain without vanna / volga
 
 On the sample history the greeks explain 96.3% of absolute daily P&L with second order terms on. Turning vanna and volga off pushes total absolute unexplained from about $325k to $524k and flags 7 days instead of 3.
 
+![daily explain, flagged days shaded](docs/pnl_explain.png)
+
 The three flagged days were interesting:
 
 * 11 Sep and 9 Oct are expiry days. Near expiry gamma is huge and changes fast, so a Taylor expansion off yesterday's greeks breaks down on the lines expiring that day. The drill down shows the unexplained sitting in lines expiring that day: the near the money NKY puts on 11 Sep, and HSI and TWSE options on 9 Oct.
